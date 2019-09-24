@@ -1,19 +1,19 @@
 import graphics as gr
-window = gr.GraphWin("Dog", 600, 800)
+window = gr.GraphWin("Dog", 600, 700)
 
 
 def draw_back1(w):
     
-    my_rectangle_1 = gr.Rectangle(gr.Point(0, 0), gr.Point(600,500 ))
+    my_rectangle_1 = gr.Rectangle(gr.Point(0, 0), gr.Point(600,450 ))
     my_rectangle_1.draw(window)
     my_rectangle_1.setFill('blue')
 
 def draw_back2(w):
     
-    my_rectangle_2 = gr.Rectangle(gr.Point(0, 500), gr.Point(600,800))
+    my_rectangle_2 = gr.Rectangle(gr.Point(0, 450), gr.Point(600,800))
     my_rectangle_2.draw(window)
     my_rectangle_2.setFill('green')
-    my_line = gr.Line(gr.Point(0, 500), gr.Point(600, 500))
+    my_line = gr.Line(gr.Point(0, 450), gr.Point(600, 450))
 
 def draw_fence(win):
     pass
