@@ -29,8 +29,7 @@ ball.setFill('red')
 
 
 def add(point_1, point_2):
-    new_point = gr.Point(point_1.x + point_2.x,
-                      point_1.y + point_2.y)
+    new_point = gr.Point(point_1.x + point_2.x, point_1.y + point_2.y)
 
     return new_point
 
@@ -40,15 +39,41 @@ def ball_go(position):
     position = add(position, speed)
 
 
+def scalar_x_vector(scalar,vector):
+    new_vector = gr.Point( scalar*vector.x, scalar*vector.y )
+    
+    return new_vector
+
+
 def scalar_multiplication(vector_1, vector_2):
     scalar = vector_1.x*vector_2.x + vector_1.y*vector_2.y
     
     return scalar
 
 
-def change_speed(velocity, x, y):
-    pass
-
+def changed_speed(speed, x, y):
+    speed_along_r = scalar_x_vector (scalar_multiplication (vector_along_radius(x,y), speed),
+                                    vector_along_radius(x,y))
+    
+    speed_normal_r = scalar_x_vector (scalar_multiplication (vector_normal_radius(x,y), speed),
+                                     vector_normal_radius(x,y))
+    
+    speed_along_r_new = scalar_x_vector (-1, speed_along_r)
+    
+    i = gr.Point(1, 0)
+    j = gr.Point(0, 1)
+    
+    speed_projection_1_x = scalar_multiplication (speed_along_r_new, i)
+    speed_projection_2_x = scalar_multiplication (speed_normal_r, i)
+    
+    speed_projection_1_y = scalar_multiplication (speed_along_r_new, j)
+    speed_projection_2_y = scalar_multiplication (speed_normal_r, j)
+    
+    speed_x = speed_projection_1_x + speed_projection_2_x
+    speed_y = speed_projection_1_y + speed_projection_2_y
+    
+    speed = gr.Point(speed_x, speed_y)
+    return speed
 
 def vector_along_radius(x,y):
     length_vector = sqrt( (x_0 - x)**2 + (y_0 - y)**2 )
@@ -68,9 +93,9 @@ def check_position():
     pass
         
 
-
 while True:
     ball_go(position)
+    
     
     x = position.x
     y = position.y
