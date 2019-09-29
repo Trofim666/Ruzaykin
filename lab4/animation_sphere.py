@@ -1,8 +1,5 @@
 import graphics as gr
 
-from math import sin
-from math import cos
-from math import pi
 from math import sqrt
 
 SIZE_X = 1000
@@ -11,8 +8,8 @@ SIZE_Y = 650
 window = gr.GraphWin("OknO", SIZE_X, SIZE_Y)
 window.setBackground('aqua')
 
-position = gr.Point(500,325)
-speed = gr.Point(3,3)
+position = gr.Point(600,310)
+speed = gr.Point(3,7)
 
 x_0 = 500
 y_0 = 325
@@ -23,7 +20,7 @@ my_big_circle.setFill('yellow')
 my_big_circle.setOutline('green')
 my_big_circle.setWidth(20)
 
-ball = gr.Circle(position, 10)
+ball = gr.Circle(position, 30)
 ball.draw(window)
 ball.setFill('red')
 
@@ -34,9 +31,8 @@ def add(point_1, point_2):
     return new_point
 
 
-def ball_go(position):
+def ball_go():
     ball.move(speed.x, speed.y)
-    position = add(position, speed)
 
 
 def scalar_x_vector(scalar,vector):
@@ -89,16 +85,25 @@ def vector_normal_radius(x,y):
     return vector_normal_r
     
 
-def check_position():
-    pass
+def check_position(speed, x, y):
+    if (x_0 - x)**2 + (y_0 - y)**2 >= 260**2:
+        speed = changed_speed(speed, x, y)
         
-
-while True:
-    ball_go(position)
+    return speed
+        
     
+while True:
+    ball_go()
+
+    position = add(position, speed) 
     
     x = position.x
     y = position.y
     
+    #Абсолютно неясно, почему не работает прога, ежели я вместо строки ниже напишу что-нибудь like this: 
+    # check_position(speed, x, y)  !!! при условии, что в функции не будет return. That is the question...
+    
+    speed = check_position(speed, x, y)
+     
     
     gr.time.sleep(0.02)
