@@ -9,7 +9,7 @@ def draw_back1(w):
     my_rectangle_1.setFill('blue')
 
 def draw_back2(w):
-    
+    """docs for function"""
     my_rectangle_2 = gr.Rectangle(gr.Point(0, 450), gr.Point(600,800))
     my_rectangle_2.draw(window)
     my_rectangle_2.setFill('green')
